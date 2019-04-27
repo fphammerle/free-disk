@@ -1,8 +1,11 @@
 import setuptools
 
+import free_disk
+
 setuptools.setup(
     name='free-disk',
     use_scm_version=True,
+    description=free_disk.__doc__,
     author='Fabian Peter Hammerle',
     author_email='fabian@hammerle.me',
     url='https://github.com/fphammerle/free-disk',
