@@ -2,7 +2,7 @@
 
 ```sh
 pip3 install --user pipenv
-git clone https://github.com/fphammerle/keep-disk-free.git
+git clone https://github.com/fphammerle/free-disk.git
 cd freesurfer-volume-reader
-pipenv run pylint keep_disk_free
+pipenv run pylint free_disk
 ```
