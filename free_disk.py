@@ -3,6 +3,37 @@ import datetime
 import logging
 import os
 import shutil
+import re
+
+# https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
+DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
+    'B': 1,
+    'kB': 10**3,
+    'KB': 10**3,
+    'MB': 10**6,
+    'GB': 10**9,
+    'TB': 10**12,
+    'KiB': 2**10,
+    'MiB': 2**20,
+    'GiB': 2**30,
+    'TiB': 2**40,
+}
+
+
+def data_size_to_bytes(size_with_unit: str) -> int:
+    match = re.match(r'^([\d\.]+)\s*([A-Za-z]+)?$', size_with_unit)
+    if not match:
+        raise ValueError('Unable to parse data size {!r}'.format(size_with_unit))
+    unit_symbol = match.group(2)
+    if unit_symbol:
+        try:
+            byte_conversion_factor = DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
+        except KeyError:
+            raise ValueError('Unknown data size unit symbol {!r}'.format(unit_symbol))
+    else:
+        byte_conversion_factor = 1
+    byte_size = float(match.group(1)) * byte_conversion_factor
+    return int(round(byte_size, 0))
 
 
 def main():
@@ -10,12 +41,14 @@ def main():
         description='Delete files with earliest modification date'
                     ' until a minimum of --free-bytes are available on the respective disk')
     argparser.add_argument('-d', '--debug', action='store_true')
-    argparser.add_argument('--free-bytes', type=int, required=True)
+    argparser.add_argument('--free-bytes', type=data_size_to_bytes, required=True,
+                           help='examples: 1024, 1024B, 4KiB, 4KB, 2TB')
     argparser.add_argument('root_dir_path', metavar='ROOT_DIR')
     args = argparser.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO,
                         format='%(asctime)s:%(levelname)s:%(message)s',
                         datefmt='%Y-%m-%dT%H:%M:%S%z')
+    logging.debug('Required free bytes: %d', args.free_bytes)
     disk_usage = shutil.disk_usage(args.root_dir_path)
     logging.debug(disk_usage)
     if disk_usage.free >= args.free_bytes:

@@ -16,4 +16,4 @@ install:
 
 script:
 - pipenv run pylint free_disk
-# - pipenv run pytest
+- pipenv run pytest

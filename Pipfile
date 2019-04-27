@@ -8,6 +8,7 @@ free-disk = {editable = true, path = "."}
 
 [dev-packages]
 pylint = ">=2.3.0"
+pytest = "*"
 
 [requires]
 python_version = "3"
