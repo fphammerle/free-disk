@@ -8,10 +8,11 @@ def main():
     argparser = argparse.ArgumentParser(
         description='Delete files with earliest modification date'
                     ' until a minimum of --free-bytes are available on the respective disk')
+    argparser.add_argument('-d', '--debug', action='store_true')
     argparser.add_argument('--free-bytes', type=int, required=True)
     argparser.add_argument('root_dir_path', metavar='ROOT_DIR')
     args = argparser.parse_args()
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=logging.DEBUG if args.debug else logging.INFO,
                         format='%(asctime)s:%(levelname)s:%(message)s',
                         datefmt='%Y-%m-%dT%H:%M:%S%z')
     disk_usage = shutil.disk_usage(args.root_dir_path)
