@@ -1,3 +1,8 @@
+"""
+Delete file with the oldest modification date
+until a minimum of --free-bytes are available on the respective disk.
+"""
+
 import argparse
 import datetime
 import logging
@@ -37,9 +42,7 @@ def data_size_to_bytes(size_with_unit: str) -> int:
 
 
 def main():
-    argparser = argparse.ArgumentParser(
-        description='Delete files with earliest modification date'
-                    ' until a minimum of --free-bytes are available on the respective disk')
+    argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument('-d', '--debug', action='store_true')
     argparser.add_argument('--free-bytes', type=data_size_to_bytes, required=True,
                            help='examples: 1024, 1024B, 4KiB, 4KB, 2TB')
