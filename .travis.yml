@@ -12,7 +12,7 @@ python:
 dist: xenial
 
 install:
-- pip install pipenv
+- pip install --upgrade pipenv>=2018.10.9
 - pipenv sync --dev
 - pipenv graph
 
