@@ -14,7 +14,9 @@ def main():
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s:%(levelname)s:%(message)s',
                         datefmt='%Y-%m-%dT%H:%M:%S%z')
-    if shutil.disk_usage(args.root_dir_path).free >= args.free_bytes:
+    disk_usage = shutil.disk_usage(args.root_dir_path)
+    logging.debug(disk_usage)
+    if disk_usage.free >= args.free_bytes:
         logging.debug('Requirement already fulfilled')
         return
     file_paths = [os.path.join(dirpath, filename)
@@ -24,6 +26,7 @@ def main():
     for file_path in sorted(file_paths, key=lambda p: os.stat(p).st_mtime):
         if shutil.disk_usage(args.root_dir_path).free >= args.free_bytes:
             break
+        os.remove(file_path)
         logging.debug('Removed file %s', file_path)
         removed_files_counter += 1
     logging.info('Removed %d files', removed_files_counter)
