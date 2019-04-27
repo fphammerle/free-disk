@@ -20,7 +20,7 @@ setuptools.setup(
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Operating System :: POSIX',
-        'Programming Language :: Python :: 3'
+        'Programming Language :: Python :: 3',
         'Topic :: System :: Filesystems',
         'Topic :: Utilities',
     ],
