@@ -12,7 +12,8 @@ pip3 install --user --upgrade free-disk
 
 ```sh
 free-disk --help
-free-disk --debug --free-bytes 1024 /dir/to/cleanup
+free-disk --free-bytes 1GiB /dir/to/cleanup
+free-disk --debug --free-bytes 2GB /dir/to/cleanup
 ```
 
 ## Tests
