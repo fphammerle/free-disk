@@ -4,6 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+free-disk = {editable = true, path = "."}
 
 [dev-packages]
 pylint = ">=2.3.0"

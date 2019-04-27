@@ -1,3 +1,9 @@
+## Install
+
+```sh
+pip3 install --user free-disk
+```
+
 ## Lint
 
 ```sh
