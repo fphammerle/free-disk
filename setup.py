@@ -6,7 +6,7 @@ setuptools.setup(
     author='Fabian Peter Hammerle',
     author_email='fabian@hammerle.me',
     url='https://github.com/fphammerle/free-disk',
-    # TODO add license
+    license='MIT',
     keywords=[
         'disk',
         'files',
@@ -17,6 +17,7 @@ setuptools.setup(
     ],
     classifiers=[
         # TODO add classifiers
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
     ],
     packages=setuptools.find_packages(),
