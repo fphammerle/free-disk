@@ -1,4 +1,4 @@
-# free-disk
+# free-disk 💾
 
 [![Build Status](https://travis-ci.org/fphammerle/free-disk.svg?branch=master)](https://travis-ci.org/fphammerle/free-disk)
 
