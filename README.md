@@ -8,6 +8,13 @@
 pip3 install --user free-disk
 ```
 
+## Usage
+
+```sh
+free-disk --help
+free-disk --debug --free-bytes 1024 /dir/to/cleanup
+```
+
 ## Lint
 
 ```sh
