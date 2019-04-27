@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/fphammerle/free-disk.svg?branch=master)](https://travis-ci.org/fphammerle/free-disk)
 
+Delete file with the oldest modification date
+until a minimum of `--free-bytes` are available on the respective disk.
+
 ## Install
 
 ```sh
