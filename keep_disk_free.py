@@ -1,7 +1,7 @@
 import argparse
+import logging
 import os
 import shutil
-import logging
 
 
 def main():
