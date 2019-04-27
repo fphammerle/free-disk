@@ -1,4 +1,5 @@
 import argparse
+import datetime
 import logging
 import os
 import shutil
@@ -23,14 +24,22 @@ def main():
     file_paths = [os.path.join(dirpath, filename)
                   for dirpath, _, filenames in os.walk(args.root_dir_path)
                   for filename in filenames]
+    file_mtime_paths = [(os.stat(p).st_mtime, p) for p in file_paths]
+    file_mtime_paths.sort()
     removed_files_counter = 0
-    for file_path in sorted(file_paths, key=lambda p: os.stat(p).st_mtime):
+    last_mtime = None
+    for file_mtime, file_path in file_mtime_paths:
         if shutil.disk_usage(args.root_dir_path).free >= args.free_bytes:
             break
         os.remove(file_path)
         logging.debug('Removed file %s', file_path)
         removed_files_counter += 1
-    logging.info('Removed %d files', removed_files_counter)
+        last_mtime = file_mtime
+    if removed_files_counter == 0:
+        logging.warn('No files to remove')
+    else:
+        logging.info('Removed %d file(s) with modification date <= %s', removed_files_counter,
+                     datetime.datetime.utcfromtimestamp(last_mtime).isoformat('T'))
 
 
 if __name__ == '__main__':
