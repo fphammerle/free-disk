@@ -36,7 +36,7 @@ def main():
         removed_files_counter += 1
         last_mtime = file_mtime
     if removed_files_counter == 0:
-        logging.warn('No files to remove')
+        logging.warning('No files to remove')
     else:
         logging.info('Removed %d file(s) with modification date <= %s', removed_files_counter,
                      datetime.datetime.utcfromtimestamp(last_mtime).isoformat('T'))
