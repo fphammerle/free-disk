@@ -16,9 +16,13 @@ setuptools.setup(
         'old',
     ],
     classifiers=[
-        # TODO add classifiers
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
+        'Operating System :: POSIX',
+        'Programming Language :: Python :: 3'
+        'Topic :: System :: Filesystems',
+        'Topic :: Utilities',
     ],
     packages=setuptools.find_packages(),
     entry_points={
