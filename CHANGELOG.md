@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 - added missing timezone identifier to log message
+- removed module import from `setup.py`
 
 ## [0.2.0] - 2019-04-27
 ### Added
