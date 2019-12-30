@@ -2,6 +2,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Build Status](https://travis-ci.org/fphammerle/free-disk.svg?branch=master)](https://travis-ci.org/fphammerle/free-disk)
+[![Python Version](https://img.shields.io/pypi/pyversions/free-disk.svg)](https://pypi.org/project/free-disk/)
 
 Delete file with the oldest modification date
 until a minimum of `--free-bytes` are available on the respective disk.
