@@ -9,7 +9,9 @@ free-disk = {editable = true, path = "."}
 [dev-packages]
 # v8.0.0 dropped python3.4 support
 more-itertools = "<8"
-pylint = ">=2.3.0"
+# v2.4.0 dropped python3.4 support
+# https://github.com/PyCQA/pylint/commit/927db96bbd343a61428faa0249fdeec58cfb3ebe
+pylint = ">=2.3.0,<2.4.0"
 # v5.0.0 dropped python3.4. support
 # https://github.com/pytest-dev/pytest/commit/4d49ba65297102110ae8aeecdb3b82b23a231fba
 pytest = "<5"
