@@ -16,6 +16,9 @@ dist: xenial
 install:
 - pip install --upgrade pipenv>=2018.10.9
 - pipenv sync --dev
+- if python3 -c 'import sys; sys.exit(sys.version_info < (3, 8))'; then
+  pipenv install 'astroid>=2.3.0';
+  fi
 - pipenv graph
 
 script:
