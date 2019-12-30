@@ -1,0 +1,26 @@
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: '0 20 * * 5'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        python-version:
+        - 3.4
+        - 3.5
+        - 3.6
+        - 3.7
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pip install --upgrade pipenv>=2018.10.9
+    - run: pipenv sync --dev
+    - run: pipenv graph
+    - run: pipenv run pylint free_disk
+    - run: pipenv run pytest
