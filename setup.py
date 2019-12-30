@@ -1,3 +1,5 @@
+import pathlib
+
 import setuptools
 
 setuptools.setup(
@@ -5,6 +7,8 @@ setuptools.setup(
     use_scm_version=True,
     description="delete file with oldest modification date"
     " until a minimum of --free-bytes are available on disk",
+    long_description=pathlib.Path(__file__).parent.joinpath("README.md").read_text(),
+    long_description_content_type="text/markdown",
     author="Fabian Peter Hammerle",
     author_email="fabian@hammerle.me",
     url="https://github.com/fphammerle/free-disk",
