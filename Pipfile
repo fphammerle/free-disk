@@ -7,6 +7,9 @@ name = "pypi"
 free-disk = {editable = true, path = "."}
 
 [dev-packages]
+# v2.3.0 dropped python3.4 support
+# https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
+astroid = "<2.3.0"
 # v8.0.0 dropped python3.4 support
 more-itertools = "<8"
 # v2.4.0 dropped python3.4 support
