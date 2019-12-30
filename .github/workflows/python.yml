@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version:
-        - 3.4
+        # 3.4 not available
         - 3.5
         - 3.6
         - 3.7
