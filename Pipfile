@@ -20,7 +20,7 @@ mypy = "*"
 # v2.4.0 dropped python3.4 support
 # https://github.com/PyCQA/pylint/commit/927db96bbd343a61428faa0249fdeec58cfb3ebe
 pylint = ">=2.3.0,<2.4.0"
-pylint-import-requirements = {git = "https://github.com/fphammerle/pylint-import-requirements", ref = "restore-python3.4-compatibility"}
+pylint-import-requirements = {git = "https://github.com/WanzenBug/pylint-import-requirements", ref = "e3d4842d17ce71d21f1e92506f87072b2f5d3b89"}
 # v5.0.0 dropped python3.4. support
 # https://github.com/pytest-dev/pytest/commit/4d49ba65297102110ae8aeecdb3b82b23a231fba
 pytest = "<5"
