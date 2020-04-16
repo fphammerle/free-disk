@@ -16,7 +16,8 @@ importlib-metadata = "<1.2.0"
 # v8.0.0 dropped python3.4 support
 # https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
 more-itertools = "<8"
-mypy = "*"
+# https://github.com/python/mypy/commit/29fdba381ec951d63320be6975ce5552e44def64
+mypy = "<v0.700"
 # v2.4.0 dropped python3.4 support
 # https://github.com/PyCQA/pylint/commit/927db96bbd343a61428faa0249fdeec58cfb3ebe
 pylint = ">=2.3.0,<2.4.0"
