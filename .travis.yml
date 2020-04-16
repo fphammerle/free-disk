@@ -23,4 +23,5 @@ install:
 
 script:
 - pipenv run pylint free_disk
+- pipenv run pylint --disable=missing-requirement tests/*
 - pipenv run pytest

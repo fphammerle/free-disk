@@ -27,4 +27,5 @@ jobs:
            fi
     - run: pipenv graph
     - run: pipenv run pylint free_disk
+    - run: pipenv run pylint --disable=missing-requirement tests/*
     - run: pipenv run pytest
