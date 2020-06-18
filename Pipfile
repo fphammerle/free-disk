@@ -26,7 +26,9 @@ pylint-import-requirements = ">=2.0.1"
 # v5.0.0 dropped python3.4. support
 # https://github.com/pytest-dev/pytest/commit/4d49ba65297102110ae8aeecdb3b82b23a231fba
 pytest = "<5"
-pytest-cov = "*"
+# v2.9.0 dropped python3.4 support
+# https://github.com/pytest-dev/pytest-cov/commit/be80b6e1e3e2378e63a20f0001c9cbf8038bd659#diff-2eeaed663bd0d25b7e608891384b7298R127
+pytest-cov = "<2.9.0"
 # v2.0.0 dropped python<3.6 support
 # https://github.com/jaraco/zipp/commit/05a3c52b4d41690e0471a2e283cffb500dc0329a
 zipp = "<2"
