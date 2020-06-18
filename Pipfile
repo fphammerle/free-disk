@@ -25,8 +25,6 @@ pytest-cov = "<2.9.0"
 # version constraints for python3.4 support:
 # https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
 astroid = "<2.3.0"
-# https://github.com/pallets/click/commit/35929957d81ab18a7bc0d75e850449f3f1068107#diff-2eeaed663bd0d25b7e608891384b7298R27
-click = {version = "*", markers="python_version >= '3.6'"}
 coverage = "<5"
 # https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
 importlib-metadata = "<1.2.0"
@@ -34,6 +32,14 @@ importlib-metadata = "<1.2.0"
 more-itertools = "<8"
 # https://github.com/jaraco/zipp/commit/05a3c52b4d41690e0471a2e283cffb500dc0329a
 zipp = "<2"
+
+# remove black's dependencies for python<3.6
+# https://github.com/pallets/click/commit/35929957d81ab18a7bc0d75e850449f3f1068107#diff-2eeaed663bd0d25b7e608891384b7298R27
+appdirs = {version = "*", markers="python_version >= '3.6'"}
+click = {version = "*", markers="python_version >= '3.6'"}
+pathspec = {version = "*", markers="python_version >= '3.6'"}
+regex = {version = "*", markers="python_version >= '3.6'"}
+toml = {version = "*", markers="python_version >= '3.6'"}
 
 # workaround https://github.com/pytest-dev/pytest/issues/3953
 pathlib2 = {version = "*", markers="python_version < '3.6'"}
