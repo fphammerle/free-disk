@@ -1,3 +1,5 @@
+# sync with https://github.com/fphammerle/ical2vdir/blob/master/.github/workflows/python.yml
+
 on:
   push:
   pull_request:
@@ -21,7 +23,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - run: pip install --upgrade pipenv>=2018.10.9
-    - run: pipenv sync --dev
+    - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
+      env:
+        PYTHON_VERSION: ${{ matrix.python-version }}
     - run: if python3 -c 'import sys; sys.exit(sys.version_info < (3, 8))'; then
            pipenv install 'astroid>=2.3.0';
            fi
