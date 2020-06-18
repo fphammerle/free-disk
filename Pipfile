@@ -10,6 +10,9 @@ free-disk = {editable = true, path = "."}
 # v2.3.0 dropped python3.4 support
 # https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
 astroid = "<2.3.0"
+# black requires python>=3.6
+# https://github.com/psf/black/commit/e74117f172e29e8a980e2c9de929ad50d3769150#diff-2eeaed663bd0d25b7e608891384b7298R51
+black = {version = "==19.10b0", markers="python_version >= '3.6'"}
 # v1.2.0 dropped python3.4. support
 # https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
 importlib-metadata = "<1.2.0"
