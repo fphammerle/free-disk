@@ -7,15 +7,9 @@ name = "pypi"
 free-disk = {editable = true, path = "."}
 
 [dev-packages]
-# v2.3.0 dropped python3.4 support
-# https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
-astroid = "<2.3.0"
-# v1.2.0 dropped python3.4. support
-# https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
-importlib-metadata = "<1.2.0"
-# v8.0.0 dropped python3.4 support
-# https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
-more-itertools = "<8"
+# black requires python>=3.6
+# https://github.com/psf/black/commit/e74117f172e29e8a980e2c9de929ad50d3769150#diff-2eeaed663bd0d25b7e608891384b7298R51
+black = {version = "==19.10b0", markers="python_version >= '3.6'"}
 # v2.4.0 dropped python3.4 support
 # https://github.com/PyCQA/pylint/commit/927db96bbd343a61428faa0249fdeec58cfb3ebe
 pylint = ">=2.3.0,<2.4.0"
@@ -24,9 +18,33 @@ pylint-import-requirements = ">=2.0.1"
 # v5.0.0 dropped python3.4. support
 # https://github.com/pytest-dev/pytest/commit/4d49ba65297102110ae8aeecdb3b82b23a231fba
 pytest = "<5"
-# v2.0.0 dropped python<3.6 support
+# v2.9.0 dropped python3.4 support
+# https://github.com/pytest-dev/pytest-cov/commit/be80b6e1e3e2378e63a20f0001c9cbf8038bd659#diff-2eeaed663bd0d25b7e608891384b7298R127
+pytest-cov = "<2.9.0"
+
+# version constraints for python3.4 support:
+# https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
+astroid = "<2.3.0"
+coverage = "<5"
+# https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
+importlib-metadata = "<1.2.0"
+# https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
+more-itertools = "<8"
 # https://github.com/jaraco/zipp/commit/05a3c52b4d41690e0471a2e283cffb500dc0329a
 zipp = "<2"
 
+# remove black's dependencies for python<3.6
+# https://github.com/pallets/click/commit/35929957d81ab18a7bc0d75e850449f3f1068107#diff-2eeaed663bd0d25b7e608891384b7298R27
+appdirs = {version = "*", markers="python_version >= '3.6'"}
+click = {version = "*", markers="python_version >= '3.6'"}
+pathspec = {version = "*", markers="python_version >= '3.6'"}
+regex = {version = "*", markers="python_version >= '3.6'"}
+toml = {version = "*", markers="python_version >= '3.6'"}
+
+# workaround https://github.com/pytest-dev/pytest/issues/3953
+pathlib2 = {version = "*", markers="python_version < '3.6'"}
+
 [requires]
 python_version = "3"
+
+# Pipfile syntax: https://github.com/pypa/pipfile#pipfile
