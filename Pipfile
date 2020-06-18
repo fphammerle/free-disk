@@ -16,6 +16,8 @@ importlib-metadata = "<1.2.0"
 # v8.0.0 dropped python3.4 support
 # https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
 more-itertools = "<8"
+# workaround https://github.com/pytest-dev/pytest/issues/3953
+pathlib2 = {version = "*", markers="python_version < '3.6'"}
 # v2.4.0 dropped python3.4 support
 # https://github.com/PyCQA/pylint/commit/927db96bbd343a61428faa0249fdeec58cfb3ebe
 pylint = ">=2.3.0,<2.4.0"
@@ -30,3 +32,5 @@ zipp = "<2"
 
 [requires]
 python_version = "3"
+
+# Pipfile syntax: https://github.com/pypa/pipfile#pipfile
