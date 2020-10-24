@@ -18,7 +18,7 @@ pylint = ">=2.3.0,<2.4.0"
 pylint-import-requirements = ">=2.0.1"
 # v5.0.0 dropped python3.4. support
 # https://github.com/pytest-dev/pytest/commit/4d49ba65297102110ae8aeecdb3b82b23a231fba
-pytest = "<5"
+pytest = "<7"
 # v2.9.0 dropped python3.4 support
 # https://github.com/pytest-dev/pytest-cov/commit/be80b6e1e3e2378e63a20f0001c9cbf8038bd659#diff-2eeaed663bd0d25b7e608891384b7298R127
 pytest-cov = "<2.9.0"
