@@ -25,7 +25,7 @@ pytest-cov = "<2.9.0"
 
 # version constraints for python3.4 support:
 # https://github.com/PyCQA/astroid/commit/4a4b7faf9de8437f2b96bc7285802fd1230b7a9a
-astroid = "<2.3.0"
+astroid = "<2.5.0"
 coverage = "<5"
 # https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
 importlib-metadata = "<1.2.0"
