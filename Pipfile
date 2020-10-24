@@ -29,6 +29,9 @@ astroid = "<2.3.0"
 coverage = "<5"
 # https://gitlab.com/python-devs/importlib_metadata/commit/cf58e1a6515adc4ad6f84cce5e89cd5ef830b317
 importlib-metadata = "<1.2.0"
+# dependency of astroid
+# https://github.com/ionelmc/python-lazy-object-proxy/commit/2bcf97a14092cf2a6eea3650bc1b3e7c61972ffa#diff-60f61ab7a8d1910d86d9fda2261620314edcae5894d5aaa236b821c7256badd7L118
+lazy-object-proxy = "<1.5.1"
 # https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
 more-itertools = "<8"
 # https://github.com/jaraco/zipp/commit/05a3c52b4d41690e0471a2e283cffb500dc0329a
