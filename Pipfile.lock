@@ -242,11 +242,11 @@
         },
         "pylint-import-requirements": {
             "hashes": [
-                "sha256:074ac465449401a174388d0a86e1120b54a92d170705da92f28fb138ba65a741",
-                "sha256:1d73bc745ffbe419082322f52d594ffa182ad64a7b6e1822e3a3c3e585eff66e"
+                "sha256:39d0993baa0991c2c6258d310aacd5f69c850ba59cb3d2ae8aa69886886b7135",
+                "sha256:bc138263bf1f79d8d1bf3d3f6786248024a71b4202cd19a189f1346f3e5b20a7"
             ],
             "index": "pypi",
-            "version": "==2.0.1"
+            "version": "==2.0.5"
         },
         "pyparsing": {
             "hashes": [
