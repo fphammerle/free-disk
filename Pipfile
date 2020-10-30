@@ -35,7 +35,7 @@ lazy-object-proxy = "<1.5.1"
 # https://github.com/more-itertools/more-itertools/commit/e8a4f926585d4052c6c6b4cc52389e94ffb64ae8
 more-itertools = "<8"
 # https://github.com/jaraco/zipp/commit/05a3c52b4d41690e0471a2e283cffb500dc0329a
-zipp = "<2"
+zipp = "<4"
 
 # remove black's dependencies for python<3.6
 # https://github.com/pallets/click/commit/35929957d81ab18a7bc0d75e850449f3f1068107#diff-2eeaed663bd0d25b7e608891384b7298R27
