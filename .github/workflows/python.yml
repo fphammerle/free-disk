@@ -24,7 +24,7 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - run: pip install --upgrade pipenv>=2018.10.9
+    - run: pip install --upgrade pipenv==2020.8.13
     - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
       env:
         PYTHON_VERSION: ${{ matrix.python-version }}
@@ -45,7 +45,7 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - run: pip install --upgrade pipenv>=2018.10.9
+    - run: pip install --upgrade pipenv==2020.8.13
     - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
       env:
         PYTHON_VERSION: ${{ matrix.python-version }}
