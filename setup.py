@@ -20,7 +20,14 @@ setuptools.setup(
     author_email="fabian@hammerle.me",
     url="https://github.com/fphammerle/free-disk",
     license="MIT",
-    keywords=["disk", "files", "cleanup", "free", "delete", "old",],
+    keywords=[
+        "disk",
+        "files",
+        "cleanup",
+        "free",
+        "delete",
+        "old",
+    ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: System Administrators",
@@ -35,8 +42,12 @@ setuptools.setup(
         "Topic :: Utilities",
     ],
     packages=setuptools.find_packages(),
-    entry_points={"console_scripts": ["free-disk = free_disk:main",],},
+    entry_points={
+        "console_scripts": [
+            "free-disk = free_disk:main",
+        ],
+    },
     install_requires=[],
-    setup_requires=["setuptools_scm",],
-    tests_require=["pylint>=2.3.0", "pytest",],
+    setup_requires=["setuptools_scm"],
+    tests_require=["pytest"],
 )
