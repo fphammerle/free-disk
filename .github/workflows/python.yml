@@ -40,6 +40,7 @@ jobs:
         - 3.6
         - 3.7
         - 3.8
+      fail-fast: false
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
@@ -53,7 +54,7 @@ jobs:
            pipenv install 'astroid>=2.3.0';
            fi
     - run: pipenv graph
-    - run: pipenv run pytest --cov=free_disk --cov-report=term-missing
-    - run: pipenv run pylint free_disk
+    - run: pipenv run pytest --cov="$(cat *.egg-info/top_level.txt)" --cov-report=term-missing
+    - run: pipenv run pylint "$(cat *.egg-info/top_level.txt)"
     - run: pipenv run pylint --disable=missing-requirement tests/*
-    - run: pipenv run mypy free_disk tests
+    - run: pipenv run mypy "$(cat *.egg-info/top_level.txt)" tests
