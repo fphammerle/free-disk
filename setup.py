@@ -49,6 +49,10 @@ setuptools.setup(
         ],
     },
     install_requires=[],
-    setup_requires=["setuptools_scm"],
+    # workaround pipenv ignoring setuptools-scm's python version requirement
+    # https://github.com/pypa/setuptools_scm/blob/v6.0.0/setup.cfg#L31
+    # https://github.com/pypa/setuptools_scm/commit/a16bae72c89c8ebebdb66d91f22bc2673b919070#diff-cfca63f0fb5632710d835abfc6665a033235fd9f92a81d25cb6fad0873ffe2b6R42
+    # https://travis-ci.org/github/fphammerle/free-disk/jobs/766438074#L237
+    setup_requires=["setuptools_scm<6"],
     tests_require=["pytest"],
 )
