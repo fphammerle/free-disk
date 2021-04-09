@@ -33,8 +33,10 @@ def data_size_to_bytes(size_with_unit: str) -> int:
     if unit_symbol:
         try:
             byte_conversion_factor = DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
-        except KeyError:
-            raise ValueError("Unknown data size unit symbol {!r}".format(unit_symbol))
+        except KeyError as exc:
+            raise ValueError(
+                "Unknown data size unit symbol {!r}".format(unit_symbol)
+            ) from exc
     else:
         byte_conversion_factor = 1
     byte_size = float(match.group(1)) * byte_conversion_factor

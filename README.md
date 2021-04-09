@@ -1,7 +1,7 @@
 # free-disk 💾
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Build Status](https://travis-ci.org/fphammerle/free-disk.svg?branch=master)](https://travis-ci.org/fphammerle/free-disk)
+[![CI Pipeline Status](https://github.com/fphammerle/free-disk/workflows/tests/badge.svg)](https://github.com/fphammerle/free-disk/actions)
 [![Last Release](https://img.shields.io/pypi/v/free-disk.svg)](https://pypi.org/project/free-disk/#history)
 [![Python Version](https://img.shields.io/pypi/pyversions/free-disk.svg)](https://pypi.org/project/free-disk/)
 
