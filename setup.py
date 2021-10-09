@@ -2,7 +2,6 @@ import pathlib
 
 import setuptools
 
-
 setuptools.setup(
     name="free-disk",
     use_scm_version=True,
@@ -29,7 +28,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX",
         # .github/workflows/python.yml
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -43,8 +41,9 @@ setuptools.setup(
             "free-disk = free_disk:_main",
         ],
     },
-    # pathlib.Path.read_text()
-    python_requires=">=3.5",
+    # >=3.5 pathlib.Path.read_text()
+    # >=3.6 f-strings
+    python_requires=">=3.6",
     install_requires=[],
     setup_requires=["setuptools_scm"],
     tests_require=["pytest"],

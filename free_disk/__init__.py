@@ -28,15 +28,13 @@ _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
 def _data_size_to_bytes(size_with_unit: str) -> int:
     match = re.match(r"^([\d\.]+)\s*([A-Za-z]+)?$", size_with_unit)
     if not match:
-        raise ValueError("Unable to parse data size {!r}".format(size_with_unit))
+        raise ValueError(f"Unable to parse data size {size_with_unit!r}")
     unit_symbol = match.group(2)
     if unit_symbol:
         try:
             byte_conversion_factor = _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
         except KeyError as exc:
-            raise ValueError(
-                "Unknown data size unit symbol {!r}".format(unit_symbol)
-            ) from exc
+            raise ValueError(f"Unknown data size unit symbol {unit_symbol!r}") from exc
     else:
         byte_conversion_factor = 1
     byte_size = float(match.group(1)) * byte_conversion_factor

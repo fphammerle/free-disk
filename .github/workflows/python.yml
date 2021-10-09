@@ -14,11 +14,10 @@ on:
 
 jobs:
   code-format:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        python-version:
-        - 3.8
+        python-verison: ['3.9']
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
@@ -31,15 +30,14 @@ jobs:
     - run: pipenv graph
     - run: pipenv run black --check .
   tests:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         python-version:
-        - 3.5
-        - 3.6
-        - 3.7
-        - 3.8
-        - 3.9
+        - '3.6'
+        - '3.7'
+        - '3.8'
+        - '3.9'
       fail-fast: false
     steps:
     - uses: actions/checkout@v1
@@ -47,13 +45,15 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - run: pip install --upgrade pipenv==2020.8.13
+    # by default pipenv picks the latest version in PATH
     - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
       env:
         PYTHON_VERSION: ${{ matrix.python-version }}
     - run: pipenv graph
     - run: pipenv run pytest --cov="$(cat *.egg-info/top_level.txt)" --cov-report=term-missing --cov-fail-under=43
     - run: pipenv run pylint --load-plugins=pylint_import_requirements "$(cat *.egg-info/top_level.txt)"
-    - run: pipenv run pylint --disable=missing-requirement tests/*
+    # https://github.com/PyCQA/pylint/issues/352
+    - run: pipenv run pylint tests/*
     - run: pipenv run mypy "$(cat *.egg-info/top_level.txt)" tests
     # >=2.1.0 to support GITHUB_TOKEN
     # COVERALLS_REPO_TOKEN required manual configuration of secret
