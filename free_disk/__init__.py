@@ -7,8 +7,8 @@ import argparse
 import datetime
 import logging
 import os
-import shutil
 import re
+import shutil
 
 # https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
 _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
@@ -89,7 +89,3 @@ def _main():
             removed_files_counter,
             datetime.datetime.utcfromtimestamp(last_mtime).isoformat("T"),
         )
-
-
-if __name__ == "__main__":
-    _main()

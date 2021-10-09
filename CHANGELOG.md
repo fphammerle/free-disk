@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - made all constants and functions private
-  (only console entry point should be called directly)
 
 ### Removed
+- ability to invoke `free_disk` module as script
+  (via `python -m free_disk`, use console entry point `free-disk` instead)
 - support for `python3.4`
 
 ## [0.2.2] - 2021-04-09
