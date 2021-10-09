@@ -2,6 +2,8 @@ import pytest
 
 import free_disk
 
+# pylint: disable=protected-access; tests
+
 
 @pytest.mark.parametrize(
     ("data_size_with_unit", "expected_bytes"),
@@ -28,11 +30,11 @@ import free_disk
         ("1  MiB", 1024 ** 2),
     ],
 )
-def test_data_size_to_bytes(data_size_with_unit, expected_bytes):
-    assert expected_bytes == free_disk.data_size_to_bytes(data_size_with_unit)
+def test__data_size_to_bytes(data_size_with_unit, expected_bytes):
+    assert expected_bytes == free_disk._data_size_to_bytes(data_size_with_unit)
 
 
 @pytest.mark.parametrize("data_size_with_unit", ["abcdef", "123G"])
-def test_data_size_to_bytes_fail(data_size_with_unit):
+def test__data_size_to_bytes_fail(data_size_with_unit):
     with pytest.raises(ValueError):
-        free_disk.data_size_to_bytes(data_size_with_unit)
+        free_disk._data_size_to_bytes(data_size_with_unit)

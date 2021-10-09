@@ -11,7 +11,7 @@ import shutil
 import re
 
 # https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
-DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
+_DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
     "B": 1,
     "kB": 10 ** 3,
     "KB": 10 ** 3,
@@ -25,14 +25,14 @@ DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
 }
 
 
-def data_size_to_bytes(size_with_unit: str) -> int:
+def _data_size_to_bytes(size_with_unit: str) -> int:
     match = re.match(r"^([\d\.]+)\s*([A-Za-z]+)?$", size_with_unit)
     if not match:
         raise ValueError("Unable to parse data size {!r}".format(size_with_unit))
     unit_symbol = match.group(2)
     if unit_symbol:
         try:
-            byte_conversion_factor = DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
+            byte_conversion_factor = _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
         except KeyError as exc:
             raise ValueError(
                 "Unknown data size unit symbol {!r}".format(unit_symbol)
@@ -43,12 +43,12 @@ def data_size_to_bytes(size_with_unit: str) -> int:
     return int(round(byte_size, 0))
 
 
-def main():
+def _main():
     argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument("-d", "--debug", action="store_true")
     argparser.add_argument(
         "--free-bytes",
-        type=data_size_to_bytes,
+        type=_data_size_to_bytes,
         required=True,
         help="examples: 1024, 1024B, 4KiB, 4KB, 2TB",
     )
@@ -92,4 +92,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    _main()

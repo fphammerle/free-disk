@@ -40,7 +40,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         "console_scripts": [
-            "free-disk = free_disk:main",
+            "free-disk = free_disk:_main",
         ],
     },
     # pathlib.Path.read_text()
