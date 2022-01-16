@@ -41,7 +41,7 @@ def _data_size_to_bytes(size_with_unit: str) -> int:
     return int(round(byte_size, 0))
 
 
-def _main():
+def _main() -> None:
     argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument("-d", "--debug", action="store_true")
     argparser.add_argument(
@@ -82,6 +82,7 @@ def _main():
     if removed_files_counter == 0:
         logging.warning("No files to remove")
     else:
+        assert last_mtime is not None  # for mypy
         logging.info(
             "Removed %d file(s) with modification date <= %sZ",
             removed_files_counter,

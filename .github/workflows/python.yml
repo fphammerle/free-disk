@@ -19,8 +19,8 @@ jobs:
       matrix:
         python-verison: ['3.9']
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
+    - uses: actions/checkout@v2.4.0
+    - uses: actions/setup-python@v2.3.1
       with:
         python-version: ${{ matrix.python-version }}
     - run: pip install --upgrade pipenv==2020.8.13
@@ -34,10 +34,10 @@ jobs:
     strategy:
       matrix:
         python-version:
-        - '3.6'
         - '3.7'
         - '3.8'
         - '3.9'
+        - '3.10'
       fail-fast: false
     steps:
     - uses: actions/checkout@v1
@@ -50,7 +50,7 @@ jobs:
       env:
         PYTHON_VERSION: ${{ matrix.python-version }}
     - run: pipenv graph
-    - run: pipenv run pytest --cov="$(cat *.egg-info/top_level.txt)" --cov-report=term-missing --cov-fail-under=43
+    - run: pipenv run pytest --cov="$(cat *.egg-info/top_level.txt)" --cov-report=term-missing --cov-fail-under=51
     - run: pipenv run pylint --load-plugins=pylint_import_requirements "$(cat *.egg-info/top_level.txt)"
     # https://github.com/PyCQA/pylint/issues/352
     - run: pipenv run pylint tests/*

@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - ability to invoke `free_disk` module as script
   (via `python -m free_disk`, use console entry point `free-disk` instead)
-- support for `python3.4` & `python3.5`
+- compatibility with `python3.4`, `python3.5` & `python3.6`
 
 ## [0.2.2] - 2021-04-09
 ### Fixed
