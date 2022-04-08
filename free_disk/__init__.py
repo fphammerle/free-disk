@@ -13,15 +13,15 @@ import shutil
 # https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
 _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
     "B": 1,
-    "kB": 10 ** 3,
-    "KB": 10 ** 3,
-    "MB": 10 ** 6,
-    "GB": 10 ** 9,
-    "TB": 10 ** 12,
-    "KiB": 2 ** 10,
-    "MiB": 2 ** 20,
-    "GiB": 2 ** 30,
-    "TiB": 2 ** 40,
+    "kB": 10**3,
+    "KB": 10**3,
+    "MB": 10**6,
+    "GB": 10**9,
+    "TB": 10**12,
+    "KiB": 2**10,
+    "MiB": 2**20,
+    "GiB": 2**30,
+    "TiB": 2**40,
 }
 
 
