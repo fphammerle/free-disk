@@ -75,7 +75,9 @@ def _main() -> None:
         for filename in filenames
     ]
     delete_re = re.compile(args.delete_re)
-    file_mtime_paths = [(os.stat(p).st_mtime, p) for p in file_paths if delete_re.match(p)]
+    file_mtime_paths = [
+        (os.stat(p).st_mtime, p) for p in file_paths if delete_re.match(p)
+    ]
     file_mtime_paths.sort()
     removed_files_counter = 0
     last_mtime = None
