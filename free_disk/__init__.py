@@ -45,6 +45,15 @@ def _main() -> None:
     argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument("-d", "--debug", action="store_true")
     argparser.add_argument(
+        "--delete-path-regex",
+        metavar="REGULAR_EXPRESSION",
+        type=re.compile,  # type: ignore
+        help="Only delete files with path matching regular expression (at any position)."
+        " Paths will not be resolved or made absolute before check."
+        r" Examples: \.mp4$ or ^/tmp/\d or ^rel/ative/ (default: no filter)",
+        default="",
+    )
+    argparser.add_argument(
         "--free-bytes",
         type=_data_size_to_bytes,
         required=True,
@@ -68,7 +77,9 @@ def _main() -> None:
         for dirpath, _, filenames in os.walk(args.root_dir_path)
         for filename in filenames
     ]
-    file_mtime_paths = [(os.stat(p).st_mtime, p) for p in file_paths]
+    file_mtime_paths = [
+        (os.stat(p).st_mtime, p) for p in file_paths if args.delete_path_regex.search(p)
+    ]
     file_mtime_paths.sort()
     removed_files_counter = 0
     last_mtime = None
