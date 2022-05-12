@@ -127,22 +127,24 @@ def test__main_path_regex_absolute(
     caplog: _pytest.logging.LogCaptureFixture, tmp_path: pathlib.Path
 ) -> None:
     tmp_path.joinpath("a").mkdir()
-    tmp_path.joinpath("a", "aa").write_bytes(b"a" * 4)
-    tmp_path.joinpath("b").write_bytes(b"b" * 3)
-    tmp_path.joinpath("c").write_bytes(b"c" * 5)
+    tmp_path.joinpath("a", "aa").write_bytes(b"aa")
+    tmp_path.joinpath("a", "a~").write_bytes(b"a~")
+    tmp_path.joinpath("b").write_bytes(b"b")
+    tmp_path.joinpath("c").write_bytes(b"c")
+    tmp_path.joinpath("d").write_bytes(b"d")
     with unittest.mock.patch(
         "shutil.disk_usage",
         lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
     ), unittest.mock.patch(
         "sys.argv",
-        ["", "--free-bytes", "35B", str(tmp_path), "--delete-re", r".*a/a|/b|b|.*c$"],
+        ["", "--free-bytes", "42B", str(tmp_path), "--delete-re", r"a/a|^b|c$|^.*/d$"],
     ), caplog.at_level(
         logging.INFO
     ):
         free_disk._main()
     assert {p.name for p in tmp_path.rglob("*")} == {"a", "b"}
     assert caplog.records[-1].message.startswith(
-        "Removed 2 file(s) with modification date <= 20"
+        "Removed 4 file(s) with modification date <= 20"
     )
 
 
@@ -150,15 +152,18 @@ def test__main_path_regex_relative(
     caplog: _pytest.logging.LogCaptureFixture, tmp_path: pathlib.Path
 ) -> None:
     tmp_path.joinpath("a").mkdir()
-    tmp_path.joinpath("a", "aa").write_bytes(b"a" * 4)
-    tmp_path.joinpath("b").write_bytes(b"b" * 3)
-    tmp_path.joinpath("c").write_bytes(b"c" * 5)
+    tmp_path.joinpath("a", "aa").write_bytes(b"aa")
+    tmp_path.joinpath("a", "aaa").write_bytes(b"aaa")
+    tmp_path.joinpath("a", "A").write_bytes(b"A")
+    tmp_path.joinpath("b").write_bytes(b"b")
+    tmp_path.joinpath("b2").write_bytes(b"b2")
+    tmp_path.joinpath("c").write_bytes(b"c")
     with unittest.mock.patch(
         "shutil.disk_usage",
         lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
     ), unittest.mock.patch(
         "sys.argv",
-        ["", "--free-bytes", "35B", ".", "--delete-re", r"\./a/a|b|\./c$"],
+        ["", "--free-bytes", "123B", ".", "--delete-re", r"/aa|^b|\d$|^\./c$"],
     ), caplog.at_level(
         logging.INFO
     ):
@@ -168,7 +173,7 @@ def test__main_path_regex_relative(
             free_disk._main()
         finally:
             os.chdir(old_working_dir)
-    assert {p.name for p in tmp_path.rglob("*")} == {"a", "b"}
+    assert {p.name for p in tmp_path.rglob("*")} == {"a", "A", "b"}
     assert caplog.records[-1].message.startswith(
-        "Removed 2 file(s) with modification date <= 20"
+        "Removed 4 file(s) with modification date <= 20"
     )

@@ -47,8 +47,10 @@ def _main() -> None:
     argparser.add_argument(
         "--delete-re",
         action="store",
-        help="Only delete files matching regexp. examples: .*mp4$",
-        default=".*",
+        help="Only delete files with path matching regular expression (at any position)."
+        " Paths will not be resolved or made absolute before check."
+        r" Examples: \.mp4$ or ^/tmp/\d or ^rel/ative/ (default: no filter)",
+        default="",
     )
     argparser.add_argument(
         "--free-bytes",
@@ -76,7 +78,7 @@ def _main() -> None:
     ]
     delete_re = re.compile(args.delete_re)
     file_mtime_paths = [
-        (os.stat(p).st_mtime, p) for p in file_paths if delete_re.match(p)
+        (os.stat(p).st_mtime, p) for p in file_paths if delete_re.search(p)
     ]
     file_mtime_paths.sort()
     removed_files_counter = 0
