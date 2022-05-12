@@ -1,5 +1,6 @@
 import collections
 import logging
+import os
 import pathlib
 import unittest.mock
 
@@ -120,3 +121,54 @@ def test__main_no_files(
         ("root", logging.DEBUG, "_DiskUsage(free=21)"),
         ("root", logging.WARNING, "No files to remove"),
     ]
+
+
+def test__main_path_regex_absolute(
+    caplog: _pytest.logging.LogCaptureFixture, tmp_path: pathlib.Path
+) -> None:
+    tmp_path.joinpath("a").mkdir()
+    tmp_path.joinpath("a", "aa").write_bytes(b"a" * 4)
+    tmp_path.joinpath("b").write_bytes(b"b" * 3)
+    tmp_path.joinpath("c").write_bytes(b"c" * 5)
+    with unittest.mock.patch(
+        "shutil.disk_usage",
+        lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
+    ), unittest.mock.patch(
+        "sys.argv",
+        ["", "--free-bytes", "35B", str(tmp_path), "--delete-re", r".*a/a|/b|b|.*c$"],
+    ), caplog.at_level(
+        logging.INFO
+    ):
+        free_disk._main()
+    assert {p.name for p in tmp_path.rglob("*")} == {"a", "b"}
+    assert caplog.records[-1].message.startswith(
+        "Removed 2 file(s) with modification date <= 20"
+    )
+
+
+def test__main_path_regex_relative(
+    caplog: _pytest.logging.LogCaptureFixture, tmp_path: pathlib.Path
+) -> None:
+    tmp_path.joinpath("a").mkdir()
+    tmp_path.joinpath("a", "aa").write_bytes(b"a" * 4)
+    tmp_path.joinpath("b").write_bytes(b"b" * 3)
+    tmp_path.joinpath("c").write_bytes(b"c" * 5)
+    with unittest.mock.patch(
+        "shutil.disk_usage",
+        lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
+    ), unittest.mock.patch(
+        "sys.argv",
+        ["", "--free-bytes", "35B", ".", "--delete-re", r"\./a/a|b|\./c$"],
+    ), caplog.at_level(
+        logging.INFO
+    ):
+        old_working_dir = os.getcwd()
+        try:
+            os.chdir(tmp_path)
+            free_disk._main()
+        finally:
+            os.chdir(old_working_dir)
+    assert {p.name for p in tmp_path.rglob("*")} == {"a", "b"}
+    assert caplog.records[-1].message.startswith(
+        "Removed 2 file(s) with modification date <= 20"
+    )
