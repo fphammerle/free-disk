@@ -9,6 +9,7 @@ import logging
 import os
 import re
 import shutil
+import sys
 
 # https://en.wikipedia.org/wiki/Template:Quantities_of_bytes
 _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR = {
@@ -45,6 +46,17 @@ def _main() -> None:
     argparser = argparse.ArgumentParser(description=__doc__)
     argparser.add_argument("-d", "--debug", action="store_true")
     argparser.add_argument(
+        "--track-bytes-deleted",
+        action="store_true",
+        help="Use total size of deleted files instead of filesystem free space for completion. This is useful on filesystems like ZFS with laggy free-disk indicators",
+    )
+    argparser.add_argument(
+        "--delete-re",
+        action="store",
+        help="Only delete files matching regexp. examples: .*mp4$",
+        default=".*",
+    )
+    argparser.add_argument(
         "--free-bytes",
         type=_data_size_to_bytes,
         required=True,
@@ -60,7 +72,16 @@ def _main() -> None:
     logging.debug("Required free bytes: %d", args.free_bytes)
     disk_usage = shutil.disk_usage(args.root_dir_path)
     logging.debug(disk_usage)
-    if disk_usage.free >= args.free_bytes:
+    space_to_free = args.free_bytes - disk_usage.free
+    space_freed = 0
+
+    def sufficient_free_space(track_bytes_deleted=False):
+        if track_bytes_deleted:
+            return space_to_free - space_freed <= 0
+        else:
+            return shutil.disk_usage(args.root_dir_path).free >= args.free_bytes
+
+    if sufficient_free_space():
         logging.debug("Requirement already fulfilled")
         return
     file_paths = [
@@ -68,23 +89,33 @@ def _main() -> None:
         for dirpath, _, filenames in os.walk(args.root_dir_path)
         for filename in filenames
     ]
-    file_mtime_paths = [(os.stat(p).st_mtime, p) for p in file_paths]
-    file_mtime_paths.sort()
+    delete_re = re.compile(args.delete_re)
+    stat_paths = [(os.stat(p), p) for p in file_paths if delete_re.match(p)]
+    stat_paths.sort(key=lambda x: x[0].st_mtime)
     removed_files_counter = 0
     last_mtime = None
-    for file_mtime, file_path in file_mtime_paths:
-        if shutil.disk_usage(args.root_dir_path).free >= args.free_bytes:
+
+    for file_stat, file_path in stat_paths:
+        if sufficient_free_space(args.track_bytes_deleted):
             break
         os.remove(file_path)
-        logging.debug("Removed file %s", file_path)
+        logging.debug(
+            "Freed %d bytes by removing file %s ", file_stat.st_size, file_path
+        )
+        space_freed += file_stat.st_size
         removed_files_counter += 1
-        last_mtime = file_mtime
+        last_mtime = file_stat.st_mtime
     if removed_files_counter == 0:
         logging.warning("No files to remove")
     else:
         assert last_mtime is not None  # for mypy
         logging.info(
-            "Removed %d file(s) with modification date <= %sZ",
+            "Removed %d file(s) with modification date <= %sZ. Deleted %d bytes. Filesystem freed %d bytes.",
             removed_files_counter,
             datetime.datetime.utcfromtimestamp(last_mtime).isoformat("T"),
+            space_freed,
+            shutil.disk_usage(args.root_dir_path).free - disk_usage.free,
         )
+
+    # exit with 0 if sufficient_free_space returns True
+    sys.exit(not sufficient_free_space(args.track_bytes_deleted))
