@@ -137,7 +137,14 @@ def test__main_path_regex_absolute(
         lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
     ), unittest.mock.patch(
         "sys.argv",
-        ["", "--free-bytes", "42B", str(tmp_path), "--delete-re", r"a/a|^b|c$|^.*/d$"],
+        [
+            "",
+            "--free-bytes",
+            "42B",
+            str(tmp_path),
+            "--delete-path-regex",
+            r"a/a|^b|c$|^.*/d$",
+        ],
     ), caplog.at_level(
         logging.INFO
     ):
@@ -163,7 +170,7 @@ def test__main_path_regex_relative(
         lambda p: _DiskUsage(free=42 - _folder_content_size_bytes(tmp_path)),
     ), unittest.mock.patch(
         "sys.argv",
-        ["", "--free-bytes", "123B", ".", "--delete-re", r"/aa|^b|\d$|^\./c$"],
+        ["", "--free-bytes", "123B", ".", "--delete-path-regex", r"/aa|^b|\d$|^\./c$"],
     ), caplog.at_level(
         logging.INFO
     ):
