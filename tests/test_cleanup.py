@@ -4,7 +4,7 @@ import os
 import pathlib
 import unittest.mock
 
-import _pytest.logging
+import _pytest.logging  # pylint: disable=import-private-name; typing
 import free_disk
 
 # pylint: disable=protected-access
