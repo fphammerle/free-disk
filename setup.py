@@ -28,7 +28,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX",
         # .github/workflows/python.yml
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
@@ -43,8 +42,8 @@ setuptools.setup(
     },
     # >=3.5 pathlib.Path.read_text()
     # >=3.6 f-strings
-    # <3.7 untested
-    python_requires=">=3.7",
+    # >=3.8 walrus operator
+    python_requires=">=3.8",
     install_requires=[],
     setup_requires=["setuptools_scm"],
     tests_require=["pytest"],

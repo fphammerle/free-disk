@@ -29,8 +29,7 @@ def _data_size_to_bytes(size_with_unit: str) -> int:
     match = re.match(r"^([\d\.]+)\s*([A-Za-z]+)?$", size_with_unit)
     if not match:
         raise ValueError(f"Unable to parse data size {size_with_unit!r}")
-    unit_symbol = match.group(2)
-    if unit_symbol:
+    if unit_symbol := match.group(2):
         try:
             byte_conversion_factor = _DATA_SIZE_UNIT_BYTE_CONVERSION_FACTOR[unit_symbol]
         except KeyError as exc:
