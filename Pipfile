@@ -23,6 +23,10 @@ typing-extensions = "*"
 # >     from exceptiongroup import BaseExceptionGroup
 # > ModuleNotFoundError: No module named 'exceptiongroup'
 exceptiongroup = {markers = "python_version < '3.11'"}
+# >   File "[...]/lib/python3.10/site-packages/astroid/decorators.py", line 16, in <module>
+# >     import wrapt
+# > ModuleNotFoundError: No module named 'wrapt'
+wrapt = "*"
 
 [requires]
 python_version = "3"
