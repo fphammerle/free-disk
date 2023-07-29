@@ -19,6 +19,10 @@ pytest-cov = "*"
 # >     from typing_extensions import Final, NoReturn
 # > ModuleNotFoundError: No module named 'typing_extensions'
 typing-extensions = "*"
+# >    File "[...]/lib/python3.10/site-packages/_pytest/_code/code.py", line 60, in <module>
+# >     from exceptiongroup import BaseExceptionGroup
+# > ModuleNotFoundError: No module named 'exceptiongroup'
+exceptiongroup = {markers = "python_version < '3.11'"}
 
 [requires]
 python_version = "3"
