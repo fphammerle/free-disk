@@ -46,7 +46,7 @@ def _main() -> None:
     argparser.add_argument(
         "--delete-path-regex",
         metavar="REGULAR_EXPRESSION",
-        type=re.compile,  # type: ignore
+        type=re.compile,
         help="Only delete files with path matching regular expression (at any position)."
         " Paths will not be resolved or made absolute before check."
         r" Examples: \.mp4$ or ^/tmp/\d or ^rel/ative/ (default: no filter)",
