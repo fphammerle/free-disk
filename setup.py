@@ -22,13 +22,12 @@ setuptools.setup(
         "delete",
         "old",
     ],
-    classifiers=[
+    classifiers=[  # https://pypi.org/classifiers/
         "Development Status :: 3 - Alpha",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX",
         # .github/workflows/python.yml
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Topic :: System :: Filesystems",
@@ -43,7 +42,7 @@ setuptools.setup(
     # >=3.5 pathlib.Path.read_text()
     # >=3.6 f-strings
     # >=3.8 walrus operator
-    python_requires=">=3.8",
+    python_requires=">=3.9",  # <3.9 untested
     install_requires=[],
     setup_requires=["setuptools_scm"],
     tests_require=["pytest"],
