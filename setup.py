@@ -44,6 +44,5 @@ setuptools.setup(
     # >=3.8 walrus operator
     python_requires=">=3.9",  # <3.9 untested
     install_requires=[],
-    setup_requires=["setuptools_scm"],
     tests_require=["pytest"],
 )
