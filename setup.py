@@ -7,7 +7,6 @@ setuptools.setup(
     use_scm_version=True,
     description="delete file with oldest modification date"
     " until a minimum of --free-bytes are available on disk",
-    # Path.read_text() new in python v3.5
     long_description=pathlib.Path(__file__).parent.joinpath("README.md").read_text(),
     long_description_content_type="text/markdown",
     author="Fabian Peter Hammerle",
@@ -28,7 +27,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX",
         # .github/workflows/python.yml
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Topic :: System :: Filesystems",
         "Topic :: Utilities",
@@ -42,7 +40,7 @@ setuptools.setup(
     # >=3.5 pathlib.Path.read_text()
     # >=3.6 f-strings
     # >=3.8 walrus operator
-    python_requires=">=3.9",  # <3.9 untested
+    python_requires=">=3.10",  # <3.10 untested
     install_requires=[],
     tests_require=["pytest"],
 )

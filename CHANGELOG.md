@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Removed
-- compatibility with `python3.7` & `python3.8`
+- compatibility with `python3.7`, `python3.8` & `python3.9`
 
 ## [1.0.0] - 2022-05-12
 ### Added
