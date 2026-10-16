@@ -7,6 +7,8 @@
 - Do **not** include a `Claude-Session:` line — the session URL is private.
 - Explain **why**, not what — don't restate in prose what's already obvious from `git diff` of
   the commit (e.g. "add a notice to the README", "update section X").
+- When content is copied or adapted from another repository, reference the sources with full
+  permanent URLs (commit hash + path), e.g. `https://github.com/<owner>/<repo>/blob/<sha>/<path>`.
 
 ## CHANGELOG
 
