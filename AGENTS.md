@@ -16,6 +16,7 @@
   the commit (e.g. "add a notice to the README", "update section X").
 - When content is copied or adapted from another repository, reference the sources with full
   permanent URLs (commit hash + path), e.g. `https://github.com/<owner>/<repo>/blob/<sha>/<path>`.
+- Don't hard-wrap long lines in commit message bodies — write each paragraph / list item on a single line; git log viewers wrap them automatically.
 
 ## CHANGELOG
 
