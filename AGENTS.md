@@ -1,5 +1,12 @@
 # Agent Instructions
 
+## Learning from mistakes
+
+- Whenever you make a mistake and learn from it (pointed out by the user or noticed yourself),
+  record the lesson in `AGENTS.md` **automatically**, without being asked, so it isn't repeated.
+- If a mistake recurs although a rule for it already exists, make that rule stricter and more
+  concrete (e.g. a mandatory check before acting) instead of just restating it.
+
 ## Commit messages
 
 - Attribution line: `Co-Authored-By: Claude <model name> <noreply@anthropic.com>` — always include the model name,
@@ -36,9 +43,22 @@
 
 - Commands like `@dependabot rebase` must reach GitHub as plain text — tool-call composition can
   silently insert stray characters (e.g. interpunct `·`) into `@mentions`, which stops the bot from
-  recognizing the command.
-- After posting such a comment, read it back and confirm the body matches exactly what was
-  intended; if not, fix it immediately with an update rather than leaving a broken command posted.
+  recognizing the command. This has happened **repeatedly**, even with this rule in place, so the
+  following steps are **mandatory**:
+  - Before posting, check that the comment body is plain ASCII and contains no `·` (U+00B7).
+  - Post such comments **one at a time**, never several in parallel.
+  - Immediately after posting, read the comment back from GitHub and compare it character by
+    character with the intended text. Only then post the next one.
+  - If the body is wrong, edit the comment to the exact intended text (Dependabot does act on
+    edited comments) and read it back again — don't leave a broken command posted.
+- The same corruption also hits `@mentions` in PR descriptions and other GitHub text. Don't quote
+  bot commands literally there (describe them instead, e.g. "the Dependabot rebase command"), and
+  read every PR description back after creating or updating it.
+
+## Pull request descriptions
+
+- Don't include the Claude session URL — it's private. A footer containing it may be appended
+  automatically when a PR is created; read the description back and remove it with an update.
 
 ## Pipfile / dependency management
 
