@@ -94,7 +94,7 @@ def _main() -> None:
     else:
         assert last_mtime is not None  # for mypy
         logging.info(
-            "Removed %d file(s) with modification date <= %sZ",
+            "Removed %d file(s) with modification date <= %s",
             removed_files_counter,
-            datetime.datetime.utcfromtimestamp(last_mtime).isoformat("T"),
+            datetime.datetime.fromtimestamp(last_mtime, datetime.UTC).isoformat("T"),
         )
