@@ -13,15 +13,6 @@ pylint = "*"
 pytest = "*"
 pytest-cov = "*"
 
-# python<3.11 compatibility
-# >    File "[...]/lib/python3.10/site-packages/_pytest/_code/code.py", line 60, in <module>
-# >     from exceptiongroup import BaseExceptionGroup
-# > ModuleNotFoundError: No module named 'exceptiongroup'
-exceptiongroup = {markers = "python_version < '3.11'"}
-# >   File "[...]/lib/python3.10/site-packages/_pytest/config/findpaths.py", line 71, in load_config_dict_from_file
-# >     import tomli as tomllib
-# > ModuleNotFoundError: No module named 'tomli'
-tomli = {markers = "python_version < '3.11'"}
 
 [requires]
 python_version = "3"
