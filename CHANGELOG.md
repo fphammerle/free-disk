@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- declare compatibility with `python3.11`, `python3.12`, `python3.13` & `python3.14`
+- declare compatibility with `python3.11`, `python3.12`, `python3.13`,
+  `python3.14` & `python3.15`
 
 ### Changed
 - log modification date with `+00:00` UTC offset instead of `Z` suffix
